@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>압력을 자동으로 수식으로 변경 예제</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <h2>입력을 자동으로 수식으로 변경 예제</h2>
+    <div id="app">
+        <input type="number" v-model.number="myNumber">
+        <!-- v-model.number 입력 내용을 number 데이터형으로 변경 -->
+        <p>100을 더해서 표시「{{ 100 + myNumber }}」</p>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                myNumber: 0,
+            }
+        })
+    </script>
+</body>
+</html>

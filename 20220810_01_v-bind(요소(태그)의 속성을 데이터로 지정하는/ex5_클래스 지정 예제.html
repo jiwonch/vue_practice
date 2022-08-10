@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>클래스 지정 예제</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <h2>클래스 지정 예제</h2>
+    <style>
+        .strike-through {
+            text-decoration: line-though;
+            color: lightgray
+        }
+
+        .dark {
+            background-color: gray;
+        }
+    </style>
+
+    <div id="app">
+        <p class="strike-through">직접 클래스 지정</p>
+        <p v-bind:class="myClass">v-bind로 클래스 지정</p>
+        <p v-bind:class="[myClass, darkClass]">v-bind로 복수의 클래스 지정</p>
+        <p v-bind:class="{'strike-through':isON}">데이터로 클래스 ON/OFF</p>
+    </div>
+
+    <script>
+        // class를 데이터로 지정
+        // <p v-bind:class="프로퍼티명"></p>
+        
+        // class를 데이터로 복수 지정
+        // <p v-bind:class="[프로퍼티명, 프로퍼티명]"></p>
+
+        // class의 활성화를 데이터로 지정
+        // <p v-bind:class="{'클래스명':프로퍼티명}"></p>
+
+        new Vue({
+            el: '#app',
+            data: {
+                myClass: 'strike-though',
+                darkClass: 'dark',
+                isON: true 
+                // true면 클래스 적용 false면 클래스 미적용
+            }
+        })
+    </script>
+</body>
+</html>

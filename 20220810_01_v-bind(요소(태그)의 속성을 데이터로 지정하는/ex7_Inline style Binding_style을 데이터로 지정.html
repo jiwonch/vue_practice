@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>style을 데이터로 지정</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="databinding">
+        <div v-bind:style="styleobj">{{title}}</div>
+    </div>
+
+    <script>
+        var vm =new Vue({
+            el: '#databinding',
+            data: {
+                title: "Inline style Binding",
+                styleobj: {
+                    color: 'red',
+                    fontSize: '40px'
+                }
+            }
+        });
+    </script>
+</body>
+</html>
