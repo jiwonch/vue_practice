@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>숫자 배열 조작과 구구단 출력</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <h2>숫자 배열 조작과 구구단 출력</h2>
+    <div id="app">
+        <ul>
+            <li v-for="(item,index) in myArray">
+                {{item}}
+                <button v-on:click="change(index)">변경</button>
+                <button v-on:click="deleteList(index)">삭제</button>
+            </li>
+        </ul>
+
+
+        <button v-on:click="addLast">추가</button>
+        <button v-on:click="sortData(myArray)">소트</button>
+        <button v-on:click="showgugudan">구구단 보이기</button>
+
+        <ul v-if="isShow">
+            <li v-for="item in myArray">{{item}}단
+                <p v-for="a in 9">{{item}} * {{a}} = {{item * a}}</p>
+            </li>
+        </ul>
+    </div>
+   
+
+
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                myArray: [2, 3, 4, 5, 6, 7, 8, 9],
+                isShow: false
+            },
+            methods: {
+                // 해당 리스트 값 +1로 변경
+                change: function (index) {
+                    this.myArray.splice(index, 1, this.myArray[index] + 1)
+                },
+
+                // 해당 리스트 삭제
+                deleteList: function (index) {
+                    this.myArray.splice(index, 1)
+                },
+
+                // 뒤에 리스트추가
+                addLast: function () {
+                    this.myArray.push(1)
+                },
+
+                sortData: function (listdata) {
+                    // 중복제거
+                    this.myArray = this.myArray.filter(function (value, index, array) {
+                        console.log(array.indexOf(value), index, value);
+                        return array.indexOf(value) === index;
+                    })
+
+                    //  정렬
+                    this.myArray.sort(function (a, b) {
+                        return (a < b ? -1 : 1);
+                    });
+                },
+
+                // 구구단
+                showgugudan: function () {
+                    this.isShow = true
+                }
+
+            }
+        });
+    </script>
+</body>
+
+</html>

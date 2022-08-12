@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>숫자 배열 조작과 구구단</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <h2>숫자 배열 조작과 구구단 출력</h2>
+    <div id="app">
+        <ul>
+            <li v-for="(item, index) in arrayList"> {{ item }}
+                <button v-on:click="changeList(index)">변경</button>
+                <button v-on:click="deleteList(index)">삭제</button>
+            </li>
+        </ul>
+        <button v-on:click="addList">추가</button>
+        <button v-on:click="sortList(arrayList)">소트</button>
+        <button v-on:click="showgugu">구구단보이기</button>
+
+        <ul v-if="isShow">
+            <li v-for="item in arrayList">{{ item }}단
+                <p v-for="a in 9">{{ item }} * {{ a }} = {{ item * a }}</p>
+            </li>
+        </ul>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                arrayList: [2, 3, 4, 5, 6, 7, 8, 9],
+                isShow: false
+            },
+            methods: {
+                changeList: function(index){
+                    this.arrayList.splice(index, 1, this.arrayList[index] + 1)
+                },
+
+                deleteList: function(index){
+                    this.arrayList.splice(index,1);
+                },
+
+                addList: function(){
+                    this.arrayList.push(1);
+                },
+
+                sortList: function(listdata){
+                    this.arrayList = this.arrayList.filter(function (value, index, array){
+                        return array.indexOf(value) === index;
+                    })
+
+                    this.arrayList.sort(function(a,b){
+                        return (a < b ? -1:1);
+                    });
+                },
+
+                showgugu: function(){
+                    this.isShow = true
+                } 
+            }
+        })
+    </script>
+</body>
+</html>
