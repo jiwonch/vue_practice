@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>체크박스로 표시/비표시에 애니메이션 효과를 주는 예제</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <style>
+        /* 나타나고 있을때와 사라질떄는 0.5초 */
+        .v-enter-active,
+        .v-leave-active {
+            transition: 0.5s;
+            transform: scale(2);
+            transform-origin: top left;
+        }
+
+        /* 나타나기전의 상태와 사라진 상태는 투명도가 0, 밑으로 20 이동 */
+        .v-enter,
+        .v-leave-to {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+    </style>
+</head>
+
+<body>
+    <h2>체크박스로 표시/비표시에 애니메이션 효과를 주는 예제</h2>
+    <div id="app">
+        <label for=""><input type="checkbox" v-model="isOK">변경</label>
+        <!-- 애니메이션 효과를 줄 부분을 transition component로 묶어 주어야함 -->
+        <transition>
+            <p v-if="isOK">표시/비표시의 애니메이션</p>
+        </transition>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                isOK: false
+            }
+        })
+    </script>
+</body>
+
+</html>
