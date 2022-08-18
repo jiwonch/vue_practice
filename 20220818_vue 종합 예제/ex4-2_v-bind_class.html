@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <style>
+        .info{
+            color: #00529b;
+            background-color: #bde5f8;
+        }
+
+        div{
+            margin: 10px 0;
+            padding: 12px;
+            font-size: 25px;
+        }
+        
+        .displayError{
+            color: #d8000c;
+            background-color: #ffbaba;
+        }
+    </style>
+</head>
+<body>
+    <div id="classbinding">
+        <div v-bind:class="[infoclass, errorclass]">{{title}}</div>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#classbinding',
+            data: {
+                title: 'This is class binding example',
+                infoclass: 'info',
+                errorclass: 'displayError'
+            }
+        })
+    </script>
+</body>
+</html>

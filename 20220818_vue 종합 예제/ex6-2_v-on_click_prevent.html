@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+</head>
+<body>
+    <div id="databinding">
+        <a href="http://www.google.com" target="_blank" v-on:click.prevent="clickme" v-bind:style="styleobj">Click Me</a>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#databinding',
+            data: {
+                clicknum: 0,
+                clicknum1: 0,
+                styleobj: {
+                    color: '#4caf50',
+                    marginLeft: '20px',
+                    fontSize: '30px'
+                }
+            },
+            methods: {
+                clickme: function() {
+                    alert('Anchor tag is clicked');
+                }
+            }
+        })
+    </script>
+</body>
+</html>

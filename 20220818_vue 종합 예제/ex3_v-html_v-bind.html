@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="vue_det">
+        <h1>Firstname : {{firstname}}</h1>
+        <h1>Lastname : {{lastname}}</h1>
+        <div v-html="htmlcontent"></div>
+        <img v-bind:src="imgsrc" alt="img" width="300" height="250">
+    </div>
+
+    <script>
+        new Vue({
+            el: '#vue_det',
+            data: {
+                firstname: 'Ria',
+                lastname: 'Singh',
+                htmlcontent: '<div><h1>Vue Js Template</h1></div>',
+                imgsrc: 'https://images.unsplash.com/photo-1487424439918-bc6b5bef0380?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1333&q=80'
+            }
+        })
+    </script>
+</body>
+</html>

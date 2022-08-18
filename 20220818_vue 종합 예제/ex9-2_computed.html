@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="computed_props">
+        <h3 style="background-color: cyan;">Random No from computed property: {{getrandomno}}</h3>
+        <h3>Random No from method: {{getrandomno1()}}</h3>
+        <h3>Random No from method: {{getrandomno1()}}</h3>
+        <h3 style="background-color: cyan;">Random No from computed property: {{getrandomno}}</h3>
+        <h3 style="background-color: cyan;">Random No from computed property: {{getrandomno}}</h3>
+        <h3 style="background-color: cyan;">Random No from computed property: {{getrandomno}}</h3>
+        <h3>Random No from method: {{getrandomno1()}}</h3>
+        <h3>Random No from method: {{getrandomno1()}}</h3>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#computed_props',
+            data: {
+                name: 'helloworld'
+            },
+            methods:{
+                getrandomno1: function(){
+                    return Math.random();
+                }
+            },
+            computed: {
+                getrandomno: function(){
+                    return Math.random();
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

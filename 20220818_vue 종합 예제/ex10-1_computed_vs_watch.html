@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        {{ reverse }} {{ now }}
+    </div>
+
+    <script>
+        // computed vs watch vs methods
+        // 복잡한 로직이라면 computed (계산된 속성)으로 구현하자.
+        // computed(계산해야하는 목표 데이터를 정의하는 '선언형' 프로그래밍 방식) 는 
+        // 저장된 결과면(캐싱)를 반환하므로 종속 대상의 변경이 일어나기 전까지 호출되지 않는다.
+        // methods는 렌더링이 일어날때마다 항상 함수를 실행한다.
+        // watch(데이터가 바뀌면 특정 함수를 실행하라는 '명령형' 프로그래밍 방식)
+
+        let vm = new Vue({
+            el: '#app',
+            data: {
+                message: 'Hello world'
+            },
+            computed: {
+                reverse: function() {
+                    console.log('call!')
+                    return this.message.split('').reverse().join('')
+                },
+                now: function(){ // 아무곳에도 의존하지 않기 때문에 절대로 업데이트 되지 않는다.
+                    console.log('call?')
+                    return Date.now()
+                }
+            }
+        })
+
+        // message 값을 변경하자 computed의 reverse 함수가 호출된다.
+        // point1. reverse가 message 데이터에 의존적 때문에 message 값이 변경되면 업데이트 된다.
+        // point2. computed 속성은 종속 대상을 따라 캐싱된다. 즉, 종속 대상이 변경될 때만 호출되므로 message 가
+        // 변하지 않으면 reverse 는 계산을 다시하지 않고 캐싱 결과를 반환한다.
+
+        vm.message = '안녕하십니까'
+
+        // computed
+        let vm2 = new Vue({
+            data: {
+                firstName: 'Sunny',
+                lastName: 'Kim',
+            },
+            computed: {
+                fullName: function() {
+                    console.log('Return full name bt computed')
+                    return `${this.firstName} ${this.lastName}`
+                },
+            }
+        })
+
+        console.log(vm2.fullName)
+        vm2.firstName = 'Wendy'
+        console.log(vm2.fullName)
+        vm2.lastName = 'Lee'
+        console.log(vm2.fullName)
+
+        //watch
+        let vm3 = new Vue({
+            data: {
+                firstName: 'Sunny',
+                lastName: 'Kim',
+                fullName: 'Sunny Kim',
+            },
+            watch: {
+                firstName: function(val) {
+                    console.log('Return full name by watch', this.lastName)
+                    this.fullName = `${val} ${this.lastName}`
+                },
+                lastName: function(val) {
+                    console.log('Return full name by watch', val)
+                    this.fullName = `${this.firstName} ${val}`
+                },
+            }
+        })
+        console.log(vm3.fullName)
+        vm3.firstName = 'Wendy'
+        console.log(vm3.fullName)
+        vm3.lastName = 'Lee'
+        console.log(vm3.fullName)
+    </script>
+</body>
+</html>

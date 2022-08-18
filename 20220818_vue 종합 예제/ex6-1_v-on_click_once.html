@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="databinding">
+        <button v-on:click.once="btnclickedonce" v-bind:style="styleobj">Click Me</button>
+        Output : {{clicknum}}<br><br>
+        <button v-on:click="btnclicked" v-bind:style="styleobj">Click Me</button>
+        Output : {{clicknum1}}<br>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#databinding',
+            data: {
+                clicknum:0,
+                clicknum1:0,
+                styleobj: {
+                    backgroundColor: '#2196f3',
+                    cursor: 'pointer',
+                    padding: '8px 16px',
+                    verticalAlign: 'middle'
+                }
+            },
+            methods: {
+                btnclickedonce: function(){
+                    this.clicknum++;
+                },
+                btnclicked: function(){
+                    this.clicknum1++;
+                }
+            }
+        })
+    </script>
+</body>
+</html>

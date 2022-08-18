@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+</head>
+<body>
+    <div id="databinding">
+        <button v-on:click="showdata" v-bind:style="styleobj">Click Me</button>
+        <span style="font-size: 25px;"><b>{{show}}</b></span>
+        <h1 v-if="show">강원도</h1>
+        <h2>제주도</h2>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#databinding',
+            data: {
+                show: true,
+                styleobj: {
+                    backgroundColor: '#2196f3',
+                    cursor: 'pointer',
+                    padding: '8px 16px',
+                    verticalAlign: 'middle'
+                }
+            },
+            methods: {
+                showdata: function(){
+                    this.show =! this.show;
+                }
+            }
+        })
+    </script>
+</body>
+</html>
