@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="component_test">
+        <testcomponent></testcomponent>
+    </div>
+    <div id="component_test1">
+        <testcomponent></testcomponent>
+    </div>
+
+    <script>
+        Vue.component('testcomponent', {
+            template: '<div v-on:mouseover = "changename()" v-on:mouseout = "orginalname();"<h1>Custom Component created by <span id = "name">{{name}}</span></h1></div>',
+            data: function() {
+                return {
+                    name: "Ria"
+                }
+            },
+            methods: {
+                changename: function() {
+                    this.name = "Ben";
+                },
+                originalname: function() {
+                    this.name = "Ria";
+                }
+            }
+        });
+
+        var vm = new Vue({
+            el: '#component_test'
+        });
+
+        var vm1 = new Vue({
+            el: '#component_test1'
+        });
+    </script>
+</body>
+</html>
